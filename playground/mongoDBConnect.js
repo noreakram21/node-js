@@ -12,16 +12,52 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', { useNewUrlParser: true
 		return	console.log('Unable to connect to mongo db server');
 	}
 	console.log('Connected to MongoDb server');
-
 	const db = client.db('TodoApp');
 
-	db.collection('User').find({name:'Mark Aeron Monroy'}).toArray().then((docs) =>{
-		console.log('Users');
-		console.log(JSON.stringify(docs, undefined , 2));
-	}, (err) =>{
-		console.log('Unable to fetch todos', err);
 
+	/*deleting data*/
+	// db.collection('User').deleteMany({name: 'Mark Aeron Monroy'}).then((result)=>{
+	// 	console.log(result);
+	// });
+
+	// db.collection('User').deleteOne({_id: 123}).then((result)=>{
+	// 	console.log(result);
+	// });
+
+	// db.collection('User').findOneAndDelete({name: 'tute'}).then((result) => {
+	// 	console.log(result);
+	// });
+
+
+	db.collection('User').findOneAndUpdate({
+		_id: new ObjectID('5bc47254f9492e388e832ea5')
+	},{
+		$set:{
+		age:22
+		}
+		},{
+
+		returnOriginal: false
+
+
+	}).then((result) =>{
+		console.log(result);
 	});
+
+
+
+
+
+	/*fetching data*/
+	// const db = client.db('TodoApp');
+
+	// db.collection('User').find({name:'Mark Aeron Monroy'}).toArray().then((docs) =>{
+	// 	console.log('Users');
+	// 	console.log(JSON.stringify(docs, undefined , 2));
+	// }, (err) =>{
+	// 	console.log('Unable to fetch todos', err);
+
+	// });
 
 	// client.close();
 
@@ -35,8 +71,6 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', { useNewUrlParser: true
 	// 	console.log('Unable to fetch todos', err);
 
 	// });
-
-	});
 
 
 	/*insert data to database*/
@@ -54,9 +88,9 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', { useNewUrlParser: true
 // 	const db = client.db('TodoApp');
 // db.collection('User').insertOne({
 
-// 	name: 'Mark Aeron Monroy',
-// 	age: 19,
-// 	location: 'Malagasang II-E'
+// 	name: 'Norea Kram Yornom',
+// 	age: 24,
+// 	location: 'Malagasang II-D'
 // }, (err, result) => {
 // 	if(err){
 // 		return console.log('Unable to insert todo', err);
@@ -67,4 +101,4 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', { useNewUrlParser: true
 
 
 // 	client.close();
-// });
+});
