@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
 
-let Todo = mongoose.model('User',{
+let User = mongoose.model('User',{
 	name:{
 		type: String,
 		// required: true
@@ -25,4 +25,4 @@ let Todo = mongoose.model('User',{
 // // 	console.log(`unalble to connect ${e}`);
 // // });
 
-// module.exports = {Todo};
+module.exports = {User};
